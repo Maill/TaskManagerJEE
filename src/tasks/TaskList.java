@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "tasks.TaskList")
 public class TaskList extends HttpServlet {
@@ -23,7 +24,14 @@ public class TaskList extends HttpServlet {
 
             dao.Create(task);
 
-            dao.Delete(task);
+            List<Task> rr = dao.Read(-1);
+
+            Task taskFroDatabase = rr.get(0);
+
+            taskFroDatabase.setTitle("JEE Project Update");
+            dao.Update(taskFroDatabase);
+
+            dao.Delete(taskFroDatabase);
         } catch(Exception exp) {
             System.out.println(exp.getMessage());
             System.out.println(exp.getStackTrace());

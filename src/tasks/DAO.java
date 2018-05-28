@@ -111,7 +111,7 @@ public class DAO {
         BeginConnection();
         try {
             if(id == -1){
-                toReturn.addAll(em.createQuery("SELECT t FROM tasks t").getResultList());
+                toReturn.addAll(em.createQuery("FROM Task t").getResultList());
             } else {
                 toReturn.add(em.find(Task.class, id));
             }
@@ -131,7 +131,7 @@ public class DAO {
     public void Update(Task taskToUpdate){
         BeginConnection();
         try {
-            em.refresh(taskToUpdate);
+            em.merge(taskToUpdate);
         } catch (Exception exp) {
             log.info("Error on Update method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
@@ -176,7 +176,7 @@ public class DAO {
         try {
             InitConnection();
         } catch (Exception exp){
-            log.info("Error on DAO constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + exp.getStackTrace());
+            log.info("Error on DAO constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         }
 
     }
@@ -192,7 +192,7 @@ public class DAO {
         try {
             DestroyConnection();
         } catch (Exception exp){
-            log.info("Error on DAO destructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + exp.getStackTrace());
+            log.info("Error on DAO destructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         }
         super.finalize();
     }
