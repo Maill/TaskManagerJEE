@@ -1,0 +1,77 @@
+body{ margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color:#F9F9F9; }
+
+.bodyLocation{ margin:20px 20px 20px 0; background-color:#428BCA; color:#FFFFFF; padding:10px 30px 10px 30px; font-size:16px; width:max-content; }
+
+.bodyLink{ color:#223344; font-size:16px; line-height:16px; display:block; margin:0 20px 20px 20px; width:max-content; text-decoration:underline; }
+
+.bodyLink:hover{ color:#428BCA; }
+
+.taskListContainer{ margin:0 20px 0 20px; }
+
+.taskListContainerBlock{ width:300px; min-width:300px; background-color:#FFFFFF; margin:0 0 20px 0; border:1px solid #D0D0D0; border-radius:4px; display:inline-block; vertical-align:top; }
+
+.taskListContainerBlockTitle{ padding:10px 20px 10px 20px; background-color:#3D3D3E; border-radius:4px 4px 0 0; }
+
+.taskListContainerBlockTitleLeft{ color:#FFFFFF; font-size:18px; line-height:18px; width:auto; display:inline-block; vertical-align:top; }
+
+.taskListContainerBlockTitleRight{ color:#D9534F; font-size:18px; line-height:18px; float:right; width:max-content; display:inline-block; vertical-align:top; }
+
+.taskListContainerBlockDescription{ padding:10px 20px 10px 20px; font-size:16px; line-height:16px; text-align:justify; }
+
+.taskListContainerBlockPending{ color:#428BCA; font-size:16px; line-height:16px; margin:10px 10px 10px calc(100% - 110px); width:100px; text-align:right; }
+
+.taskListContainerBlockEnded{ color:#5CB85C; font-size:16px; line-height:16px; margin:10px 10px 10px calc(100% - 110px); width:100px; text-align:right; }
+
+.taskListContainerBlockModify{ text-align:center; text-decoration:none; border:none; cursor:pointer; border-radius:4px; font-size:16px; line-height:16px; color:#FFFFFF; background-color:#428BCA; padding:4px 0 4px 0; width:100px; margin:10px 10px 10px calc(100% - 220px); display:inline-block; vertical-align:top; }
+
+.taskListContainerBlockModify:hover{ color:#000000; background-color:#317AB9; -webkit-transition-duration:0.5s; transition-duration:0.5s; -moz-transition-duration:0.5s; -o-transition-duration:0.5s; }
+
+.taskListContainerBlockRemove{ text-align:center; text-decoration:none; border:none; cursor:pointer; border-radius:4px; font-size:16px; line-height:16px; color:#FFFFFF; background-color:#D9534F; padding:4px 0 4px 0; width:100px; margin:10px 10px 10px 0; display:inline-block; vertical-align:top; }
+
+.taskListContainerBlockRemove:hover{ color:#000000; background-color:#C8423E; -webkit-transition-duration:0.5s; transition-duration:0.5s; -moz-transition-duration:0.5s; -o-transition-duration:0.5s; }
+
+.successMessage{ width:360px; background-color:#B0F2B6; border:1px solid #90D094; border-radius:4px; margin:20px; padding:10px 20px 10px 20px; color:#70B072; }
+
+.errorMessage{ width:360px; background-color:#F08080; border:1px solid #D06060; border-radius:4px; margin:20px; padding:10px 20px 10px 20px; color:#B04040; }
+
+.taskRemoveBlock{ width:400px; background-color:#FFFFFF; border:1px solid #D0D0D0; border-radius:4px; margin:20px; }
+
+.taskRemoveBlockTitle{ border-bottom:1px solid #D0D0D0; padding:10px; font-size:20px; line-height:20px; }
+
+.taskRemoveBlockMessage{ padding:10px; font-size:18px; line-height:18px; color:#D9534F; text-align:center; }
+
+.taskRemoveBlockSuccess{ padding:10px; font-size:18px; line-height:18px; color:#5CB85C; text-align:center; }
+
+.taskRemoveBlockError{ padding:10px; font-size:18px; line-height:18px; color:#D9534F; text-align:center; }
+
+.taskRemoveBlockConfirm{ background-color:#D9534F; color:#FFFFFF; font-size:16px; line-height:16px; padding:4px 0 4px 0; width:80px; text-align:center; text-decoration:none; border:none; border-radius:4px; cursor:pointer; display:inline-block; vertical-align:top; margin:10px 10px 10px calc(100% - 180px); }
+
+.taskRemoveBlockConfirm:hover{ color:#000000; background-color:#C8423E; }
+
+.taskRemoveBlockCancel{ background-color:#428BCA; color:#FFFFFF; font-size:16px; line-height:16px; padding:4px 0 4px 0; width:80px; text-align:center; text-decoration:none; border:none; border-radius:4px; cursor:pointer; display:inline-block; vertical-align:top; margin:10px 10px 10px 0; }
+
+.taskRemoveBlockCancel:hover{ color:#000000; background-color:#317AB9; }
+
+.taskRemoveBlockReturn{ background-color:#428BCA; color:#FFFFFF; font-size:16px; line-height:16px; padding:4px 0 4px 0; width:100px; text-align:center; text-decoration:none; border:none; border-radius:4px; cursor:pointer; display:inline-block; vertical-align:top; margin:10px 10px 10px calc(100% - 110px); }
+
+.taskRemoveBlockReturn:hover{ color:#000000; background-color:#C8423E; }
+
+@media (max-width: 319px)
+{
+    .taskListContainerBlock{ width:calc(100% - 40px); margin:0 20px 20px 20px; }
+}
+
+@media (min-width: 320px) and (max-width: 479px)
+{
+    .taskListContainerBlock{ width:calc(100% - 40px); margin:0 20px 20px 20px; }
+}
+
+@media (min-width: 480px) and (max-width: 639px)
+{
+    .taskListContainerBlock{ width:300px; margin:0 20px 20px 20px; }
+}
+
+@media (max-width: 439px)
+{
+    .taskRemoveBlock{ width:calc(100% - 40px); margin:20px; }
+}

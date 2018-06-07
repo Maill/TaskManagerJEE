@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0">
+	<servlet>
+		<servlet-name>TaskList</servlet-name>
+		<servlet-class>tasks.TaskList</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>TaskCreation</servlet-name>
+		<servlet-class>tasks.TaskCreation</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>TaskModification</servlet-name>
+		<servlet-class>tasks.TaskModification</servlet-class>
+	</servlet>
+    <servlet>
+        <servlet-name>TaskSuppression</servlet-name>
+        <servlet-class>tasks.TaskSuppression</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+		<servlet-name>TaskList</servlet-name>
+		<url-pattern>/list</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TaskCreation</servlet-name>
+		<url-pattern>/creation</url-pattern>
+	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskModification</servlet-name>
+        <url-pattern>/modification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskSuppression</servlet-name>
+        <url-pattern>/suppression</url-pattern>
+    </servlet-mapping>
+</web-app>
