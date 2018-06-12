@@ -18,7 +18,7 @@
             <a class="bodyLink" href="/list?urgent=true">Afficher uniquement les tâches urgentes</a>
         </c:if>
         <div class="taskListContainer">
-            <c:forEach items="${requestScope.tasks}" var="task">
+            <c:forEach items="${requestScope.TasksApp}" var="task">
                 <div class="taskListContainerBlock">
                     <div class="taskListContainerBlockTitle">
                         <div class="taskListContainerBlockTitleLeft">${task.title}</div>

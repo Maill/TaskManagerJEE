@@ -6,19 +6,19 @@
   version="3.0">
 	<servlet>
 		<servlet-name>TaskList</servlet-name>
-		<servlet-class>tasks.TaskList</servlet-class>
+		<servlet-class>TasksApp.Views.TaskList</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>TaskCreation</servlet-name>
-		<servlet-class>tasks.TaskCreation</servlet-class>
+		<servlet-class>TasksApp.Views.TaskCreation</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>TaskModification</servlet-name>
-		<servlet-class>tasks.TaskModification</servlet-class>
+		<servlet-class>TasksApp.Views.TaskModification</servlet-class>
 	</servlet>
     <servlet>
         <servlet-name>TaskSuppression</servlet-name>
-        <servlet-class>tasks.TaskSuppression</servlet-class>
+        <servlet-class>TasksApp.Views.TaskSuppression</servlet-class>
     </servlet>
 
 	<servlet-mapping>

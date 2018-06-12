@@ -23,13 +23,13 @@ function updateMonthSelect(yearSelected)
 {
     updateDaySelect('');
 
-    yearSelected.length == 0 ? document.getElementById('monthSelect').innerHTML = '<option></option>' :
+    yearSelected.length === 0 ? document.getElementById('monthSelect').innerHTML = '<option></option>' :
 
     removeOptionsFromSelect('monthSelect', function(error)
     {
         for(var i = 0; i < 12; i++)
         {
-            if(currentDate.getFullYear() == yearSelected)
+            if(currentDate.getFullYear() === yearSelected)
             {
                 if(i >= currentDate.getMonth())
                 {
@@ -51,13 +51,13 @@ function updateDaySelect(monthSelected)
 {
     updateHourSelect('');
 
-    monthSelected.length == 0 ? document.getElementById('daySelect').innerHTML = '<option></option>' :
+    monthSelected.length === 0 ? document.getElementById('daySelect').innerHTML = '<option></option>' :
 
     removeOptionsFromSelect('daySelect', function(error)
     {
         var amountOfDaysInSelectedMonth = new Date(parseInt(document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value), parseInt(monthSelected) + 1, 0).getDate();
 
-        var startingDay = (monthSelected == currentDate.getMonth()) && (document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value == currentDate.getFullYear()) ? currentDate.getDate() : 1;
+        var startingDay = (monthSelected === currentDate.getMonth()) && (document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value === currentDate.getFullYear()) ? currentDate.getDate() : 1;
 
         for(var i = startingDay; i <= amountOfDaysInSelectedMonth; i++)
         {
@@ -72,20 +72,20 @@ function updateHourSelect(daySelected)
 {
     updateMinuteSelect('');
 
-    daySelected.length == 0 ? document.getElementById('hourSelect').innerHTML = '<option></option>' :
+    daySelected.length === 0 ? document.getElementById('hourSelect').innerHTML = '<option></option>' :
 
     removeOptionsFromSelect('hourSelect', function(error)
     {
         for(var i = 0; i < 24; i++)
         {
-            if((daySelected == currentDate.getDate()) && (document.getElementById('monthSelect').options[document.getElementById('monthSelect').selectedIndex].value == currentDate.getMonth()) && (document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value == currentDate.getFullYear()))
+            if((daySelected === currentDate.getDate()) && (document.getElementById('monthSelect').options[document.getElementById('monthSelect').selectedIndex].value === currentDate.getMonth()) && (document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value == currentDate.getFullYear()))
             {
                 if(i > currentDate.getHours())
                 {
                     document.getElementById('hourSelect').innerHTML += '<option value="' + i + '">' + i + '</option>';
                 }
 
-                else if((i == currentDate.getHours()) && ((currentDate.getMinutes() + minimumDelayBeforeEndOfTask) < 60))
+                else if((i === currentDate.getHours()) && ((currentDate.getMinutes() + minimumDelayBeforeEndOfTask) < 60))
                 {
                     document.getElementById('hourSelect').innerHTML += '<option value="' + i + '">' + i + '</option>';
                 }
@@ -103,13 +103,13 @@ function updateHourSelect(daySelected)
 
 function updateMinuteSelect(hourSelected)
 {
-    hourSelected.length == 0 ? document.getElementById('minuteSelect').innerHTML = '<option></option>' :
+    hourSelected.length === 0 ? document.getElementById('minuteSelect').innerHTML = '<option></option>' :
 
     removeOptionsFromSelect('minuteSelect', function(error)
     {
         for(var i = 0; i < 60; i++)
         {
-            if((hourSelected == currentDate.getHours()) && (document.getElementById('daySelect').options[document.getElementById('daySelect').selectedIndex].value == currentDate.getDate()) && (document.getElementById('monthSelect').options[document.getElementById('monthSelect').selectedIndex].value == currentDate.getMonth()) && (document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value == currentDate.getFullYear()))
+            if((hourSelected === currentDate.getHours()) && (document.getElementById('daySelect').options[document.getElementById('daySelect').selectedIndex].value === currentDate.getDate()) && (document.getElementById('monthSelect').options[document.getElementById('monthSelect').selectedIndex].value == currentDate.getMonth()) && (document.getElementById('yearSelect').options[document.getElementById('yearSelect').selectedIndex].value == currentDate.getFullYear()))
             {
                 if(i >= (currentDate.getMinutes() + minimumDelayBeforeEndOfTask))
                 {
@@ -135,12 +135,12 @@ function removeOptionsFromSelect(selectID, callback)
     {
         document.getElementById(selectID).children[x].remove();
 
-        document.getElementById(selectID).children[x] != undefined
+        document.getElementById(selectID).children[x] !== undefined
         ? removeOptionsLoop()
         : callback(null);
-    }
+    };
 
-    document.getElementById(selectID).children[x] != undefined
+    document.getElementById(selectID).children[x] !== undefined
     ? removeOptionsLoop()
     : callback(null);
 }
