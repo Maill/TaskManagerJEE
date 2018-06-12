@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TaskDAO implements ITaskDAO {
@@ -27,7 +28,7 @@ public class TaskDAO implements ITaskDAO {
     /**
      * Initiate the connection from configuration
      */
-    private void InitConnection() {
+    private void initConnection() {
         log.info("Initialize connection");
         try {
             // Set the connection
@@ -35,6 +36,7 @@ public class TaskDAO implements ITaskDAO {
             em = emf.createEntityManager();
             tx = em.getTransaction();
         } catch (Exception exp) {
+            log.log(Level.SEVERE,"Error on initConnection method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
             throw exp;
         }
 
@@ -52,6 +54,7 @@ public class TaskDAO implements ITaskDAO {
                 tx.begin();
             }
         } catch (Exception exp) {
+            log.log(Level.SEVERE,"Error on beginConnection method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
             throw exp;
         }
     }
@@ -59,12 +62,13 @@ public class TaskDAO implements ITaskDAO {
     /**
      * Apply the data request in queue
      */
-    private void ApplyRequest(){
+    private void applyRequest(){
         log.info("Apply request in queue");
         try {
             // Apply requests
             tx.commit();
         } catch (Exception exp) {
+            log.log(Level.SEVERE,"Error on beginConnection method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
             throw exp;
         }
     }
@@ -83,6 +87,7 @@ public class TaskDAO implements ITaskDAO {
             em = null;
             emf = null;
         } catch (Exception exp) {
+            log.log(Level.SEVERE,"Error on destroyConnection method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
             throw exp;
         }
     }
@@ -100,7 +105,7 @@ public class TaskDAO implements ITaskDAO {
         } catch (Exception exp) {
             log.info("Error on create method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
-            ApplyRequest();
+            applyRequest();
         }
     }
 
@@ -119,9 +124,9 @@ public class TaskDAO implements ITaskDAO {
                 toReturn.add(em.find(Task.class, id));
             }
         } catch (Exception exp) {
-            log.info("Error on read method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.log(Level.SEVERE,"Error on read method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
-            ApplyRequest();
+            applyRequest();
         }
 
         return toReturn;
@@ -136,9 +141,9 @@ public class TaskDAO implements ITaskDAO {
         try {
             em.merge(taskToUpdate);
         } catch (Exception exp) {
-            log.info("Error on update method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.log(Level.SEVERE,"Error on update method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
-            ApplyRequest();
+            applyRequest();
         }
     }
 
@@ -151,21 +156,24 @@ public class TaskDAO implements ITaskDAO {
         try {
             em.remove(taskToDelete);
         } catch (Exception exp) {
-            log.info("Error on Delete method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.log(Level.SEVERE,"Error on Delete method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
-            ApplyRequest();
+            applyRequest();
         }
     }
     //endregion
 
     //region Instance
-    private static TaskDAO DAOInstance = new TaskDAO();
+    private static TaskDAO DAOInstance = null;
 
     /**
      * Initialize an instance of TasksApp.Data.TaskDAO
      * @return A TasksApp.Data.TaskDAO Object instance
      */
     public static TaskDAO getDAOInstance() {
+        if(DAOInstance == null){
+            DAOInstance = new TaskDAO();
+        }
         return DAOInstance;
     }
     //endregion
@@ -177,9 +185,10 @@ public class TaskDAO implements ITaskDAO {
     private TaskDAO(){
         log = Logger.getLogger(TaskDAO.class.getName());
         try {
-            InitConnection();
+            initConnection();
         } catch (Exception exp){
-            log.info("Error on TaskDAO constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.log(Level.SEVERE,"Error on TaskDAO constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            throw exp;
         }
 
     }

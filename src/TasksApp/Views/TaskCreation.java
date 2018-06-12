@@ -10,15 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/TaskCreation")
 public class TaskCreation extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    //region Logging attribute
+    private Logger log;
+    //endregion
 
     public TaskCreation()
     {
         super();
+        log = Logger.getLogger(TaskCreation.class.getName());
     }
 
     /**
@@ -63,8 +69,7 @@ public class TaskCreation extends HttpServlet
         {
             request.setAttribute("success", false);
 
-            System.out.println(exp.getMessage());
-            System.out.println(TaskDAO.getStringStackTrace(exp));
+            log.log(Level.SEVERE,"Error in doPost TaskCreation Servlet constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + TaskDAO.getStringStackTrace(exp).toString());
         }
         finally
         {

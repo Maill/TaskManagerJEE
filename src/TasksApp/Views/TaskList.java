@@ -12,15 +12,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/TaskList")
 public class TaskList extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
+    //region Logging attribute
+    private Logger log;
+    //endregion
 
     public TaskList() 
     {
         super();
+        log = Logger.getLogger(TaskList.class.getName());
     }
 
     /**
@@ -48,11 +54,9 @@ public class TaskList extends HttpServlet
             {
                 List<Task> urgentTasks = new ArrayList<>();
 
-                for(int i = 0; i < allTasks.size(); i++)
-                {
-                    if(allTasks.get(i).isUrgent())
-                    {
-                        urgentTasks.add(allTasks.get(i));
+                for (Task task : allTasks) {
+                    if (task.isUrgent()) {
+                        urgentTasks.add(task);
                     }
                 }
 
@@ -68,8 +72,7 @@ public class TaskList extends HttpServlet
 		}
 		catch(Exception exp)
 		{
-			System.out.println(exp.getMessage());
-			System.out.println(TaskDAO.getStringStackTrace(exp));
+		    log.log(Level.SEVERE,"Error in doGet TaskList Servlet constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + TaskDAO.getStringStackTrace(exp).toString());
 		}
 		finally
 		{

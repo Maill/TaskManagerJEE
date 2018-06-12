@@ -11,15 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/TaskModification")
 public class TaskModification extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    //region Logging attribute
+    private Logger log;
+    //endregion
 
     public TaskModification()
     {
         super();
+        log = Logger.getLogger(TaskModification.class.getName());
     }
 
     /**
@@ -81,8 +87,7 @@ public class TaskModification extends HttpServlet
         {
             request.setAttribute("success", false);
 
-            System.out.println(exp.getMessage());
-            System.out.println(TaskDAO.getStringStackTrace(exp));
+            log.log(Level.SEVERE,"Error in doPost TaskModification Servlet constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + TaskDAO.getStringStackTrace(exp).toString());
         }
         finally
         {
