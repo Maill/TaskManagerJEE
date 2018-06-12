@@ -33,7 +33,7 @@ public class TaskSuppression extends HttpServlet
             {
                 DAO dao = DAO.getDAOInstance();
 
-                List<Task> taskList = dao.Read(Integer.parseInt(request.getParameter("remove")));
+                List<Task> taskList = dao.read(Integer.parseInt(request.getParameter("remove")));
 
                 Task task = taskList.get(0);
 

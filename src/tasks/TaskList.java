@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +39,7 @@ public class TaskList extends HttpServlet
 		{
 			DAO myDao = DAO.getDAOInstance();
 
-			List<Task> allTasks = myDao.Read(-1);
+			List<Task> allTasks = myDao.read(-1);
 
 			if(onlyUrgent)
             {

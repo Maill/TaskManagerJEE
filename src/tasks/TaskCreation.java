@@ -31,7 +31,7 @@ public class TaskCreation extends HttpServlet
     }
 
     /**
-     * Action on HTTP POST call. / Create the task from form to the database
+     * Action on HTTP POST call. / create the task from form to the database
      * @param request
      * @param response
      * @throws ServletException
@@ -52,7 +52,7 @@ public class TaskCreation extends HttpServlet
 
             Task task = new Task(request.getParameter("taskName"), request.getParameter("taskDescription"), calendar.getTime(), request.getParameter("taskUrgency") != null);
 
-            dao.Create(task);
+            dao.create(task);
 
             request.setAttribute("success", true);
         }

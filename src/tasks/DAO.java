@@ -40,7 +40,7 @@ public class DAO {
     /**
      * Open the connection for data request
      */
-    private void BeginConnection(){
+    private void beginConnection(){
         log.info("Begin connection");
         try {
             //Checking if an active connection exists
@@ -69,7 +69,7 @@ public class DAO {
     /**
      * Close the connection
      */
-    private void DestroyConnection(){
+    private void destroyConnection(){
         log.info("Closing connection");
         try {
             // Close connection
@@ -90,12 +90,12 @@ public class DAO {
      * Store a new tasks.Task
      * @param taskToCreate tasks.Task to create
      */
-    public void Create(Task taskToCreate){
-        BeginConnection();
+    public void create(Task taskToCreate){
+        beginConnection();
         try {
             em.persist(taskToCreate);
         } catch (Exception exp) {
-            log.info("Error on Create method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.info("Error on create method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
             ApplyRequest();
         }
@@ -106,9 +106,9 @@ public class DAO {
      * @param id Specify the id of the tasks.Task or -1 to get all the records
      * @return A list of tasks.Task
      */
-    public List<Task> Read(int id){
+    public List<Task> read(int id){
         List<Task> toReturn = new ArrayList<>();
-        BeginConnection();
+        beginConnection();
         try {
             if(id == -1){
                 toReturn.addAll(em.createQuery("FROM Task t").getResultList());
@@ -116,7 +116,7 @@ public class DAO {
                 toReturn.add(em.find(Task.class, id));
             }
         } catch (Exception exp) {
-            log.info("Error on Read method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.info("Error on read method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
             ApplyRequest();
         }
@@ -125,15 +125,15 @@ public class DAO {
     }
 
     /**
-     * Update a tasks.Task
+     * update a tasks.Task
      * @param taskToUpdate tasks.Task to update
      */
-    public void Update(Task taskToUpdate){
-        BeginConnection();
+    public void update(Task taskToUpdate){
+        beginConnection();
         try {
             em.merge(taskToUpdate);
         } catch (Exception exp) {
-            log.info("Error on Update method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.info("Error on update method\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         } finally {
             ApplyRequest();
         }
@@ -144,7 +144,7 @@ public class DAO {
      * @param taskToDelete tasks.Task to delete
      */
     public void Delete(Task taskToDelete){
-        BeginConnection();
+        beginConnection();
         try {
             em.remove(taskToDelete);
         } catch (Exception exp) {
@@ -190,7 +190,7 @@ public class DAO {
     @Override
     protected void finalize() throws Throwable {
         try {
-            DestroyConnection();
+            destroyConnection();
         } catch (Exception exp){
             log.info("Error on DAO destructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         }

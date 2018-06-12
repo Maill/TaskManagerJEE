@@ -30,7 +30,7 @@ public class TaskModification extends HttpServlet
     {
         DAO dao = DAO.getDAOInstance();
 
-        List<Task> taskList = dao.Read(Integer.parseInt(request.getParameter("task")));
+        List<Task> taskList = dao.read(Integer.parseInt(request.getParameter("task")));
 
         Task task = taskList.get(0);
 
@@ -59,7 +59,7 @@ public class TaskModification extends HttpServlet
         {
             DAO dao = DAO.getDAOInstance();
 
-            List<Task> taskList = dao.Read(Integer.parseInt(request.getParameter("taskID")));
+            List<Task> taskList = dao.read(Integer.parseInt(request.getParameter("taskID")));
 
             Task task = taskList.get(0);
 
@@ -70,7 +70,7 @@ public class TaskModification extends HttpServlet
             task.setScheduledDate(calendar.getTime());
             task.setUrgent(request.getParameter("taskUrgency") != null);
 
-            dao.Update(task);
+            dao.update(task);
 
             request.setAttribute("success", true);
         }
