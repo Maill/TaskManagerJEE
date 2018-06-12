@@ -18,11 +18,25 @@ public class TaskCreation extends HttpServlet
         super();
     }
 
+    /**
+     * Action on HTTP GET call. / Sets the WEB page to show
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         this.getServletContext().getRequestDispatcher("/WEB-INF/task_creation.jsp").forward(request, response);
     }
 
+    /**
+     * Action on HTTP POST call. / Create the task from form to the database
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         Calendar calendar = Calendar.getInstance();
@@ -47,7 +61,7 @@ public class TaskCreation extends HttpServlet
             request.setAttribute("success", false);
 
             System.out.println(exp.getMessage());
-            System.out.println(exp.getStackTrace());
+            System.out.println(DAO.getStringStackTrace(exp));
         }
         finally
         {

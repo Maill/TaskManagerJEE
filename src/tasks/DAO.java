@@ -204,7 +204,7 @@ public class DAO {
      * @param exp Exception to transform into string
      * @return Exception transform into StringBuilder
      */
-    private StringBuilder getStringStackTrace(Exception exp){
+    public static StringBuilder getStringStackTrace(Exception exp){
         StringBuilder sb = new StringBuilder();
 
         StackTraceElement[] elements = exp.getStackTrace();

@@ -21,6 +21,13 @@ public class TaskList extends HttpServlet
         super();
     }
 
+    /**
+     * Action on HTTP GET call. / Sets the WEB page to show and sets the data to show
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
         boolean onlyUrgent =  request.getParameter("urgent") != null;
@@ -60,7 +67,7 @@ public class TaskList extends HttpServlet
 		catch(Exception exp)
 		{
 			System.out.println(exp.getMessage());
-			System.out.println(exp.getStackTrace());
+			System.out.println(DAO.getStringStackTrace(exp));
 		}
 		finally
 		{

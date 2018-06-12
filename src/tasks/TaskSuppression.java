@@ -18,6 +18,13 @@ public class TaskSuppression extends HttpServlet
         super();
     }
 
+    /**
+     * Action on HTTP GET call. / Remove the selected task and remove it form the database.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         if(request.getParameter("remove") != null)
@@ -39,7 +46,7 @@ public class TaskSuppression extends HttpServlet
                 request.setAttribute("success", false);
 
                 System.out.println(exp.getMessage());
-                System.out.println(exp.getStackTrace());
+                System.out.println(DAO.getStringStackTrace(exp));
             }
             finally
             {
