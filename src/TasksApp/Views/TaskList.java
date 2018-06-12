@@ -1,4 +1,7 @@
-package tasks;
+package TasksApp.Views;
+
+import TasksApp.Data.Contract.Task;
+import TasksApp.Data.TaskDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +40,7 @@ public class TaskList extends HttpServlet
 
 		try
 		{
-			DAO myDao = DAO.getDAOInstance();
+			TaskDAO myDao = TaskDAO.getDAOInstance();
 
 			List<Task> allTasks = myDao.read(-1);
 
@@ -54,19 +57,19 @@ public class TaskList extends HttpServlet
                 }
 
                 request.setAttribute("urgent", true);
-                request.setAttribute("tasks", urgentTasks);
+                request.setAttribute("TasksApp", urgentTasks);
             }
 
             else
             {
                 request.setAttribute("urgent", false);
-                request.setAttribute("tasks", allTasks);
+                request.setAttribute("TasksApp", allTasks);
             }
 		}
 		catch(Exception exp)
 		{
 			System.out.println(exp.getMessage());
-			System.out.println(DAO.getStringStackTrace(exp));
+			System.out.println(TaskDAO.getStringStackTrace(exp));
 		}
 		finally
 		{

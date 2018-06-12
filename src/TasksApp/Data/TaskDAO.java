@@ -1,4 +1,6 @@
-package tasks;
+package TasksApp.Data;
+
+import TasksApp.Data.Contract.Task;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class DAO {
+public class TaskDAO {
 
     //region Connection attributes
     private EntityManagerFactory emf;
@@ -87,8 +89,8 @@ public class DAO {
 
     //region Data requests
     /**
-     * Store a new tasks.Task
-     * @param taskToCreate tasks.Task to create
+     * Store a new TasksApp.Data.Contract.Task
+     * @param taskToCreate TasksApp.Data.Contract.Task to create
      */
     public void create(Task taskToCreate){
         beginConnection();
@@ -103,8 +105,8 @@ public class DAO {
 
     /**
      * Gather Tasks from the database
-     * @param id Specify the id of the tasks.Task or -1 to get all the records
-     * @return A list of tasks.Task
+     * @param id Specify the id of the TasksApp.Data.Contract.Task or -1 to get all the records
+     * @return A list of TasksApp.Data.Contract.Task
      */
     public List<Task> read(int id){
         List<Task> toReturn = new ArrayList<>();
@@ -125,8 +127,8 @@ public class DAO {
     }
 
     /**
-     * update a tasks.Task
-     * @param taskToUpdate tasks.Task to update
+     * update a TasksApp.Data.Contract.Task
+     * @param taskToUpdate TasksApp.Data.Contract.Task to update
      */
     public void update(Task taskToUpdate){
         beginConnection();
@@ -140,8 +142,8 @@ public class DAO {
     }
 
     /**
-     * Delete a tasks.Task
-     * @param taskToDelete tasks.Task to delete
+     * Delete a TasksApp.Data.Contract.Task
+     * @param taskToDelete TasksApp.Data.Contract.Task to delete
      */
     public void Delete(Task taskToDelete){
         beginConnection();
@@ -156,13 +158,13 @@ public class DAO {
     //endregion
 
     //region Instance
-    private static DAO DAOInstance = new DAO();
+    private static TaskDAO DAOInstance = new TaskDAO();
 
     /**
-     * Initialize an instance of tasks.DAO
-     * @return A tasks.DAO Object instance
+     * Initialize an instance of TasksApp.Data.TaskDAO
+     * @return A TasksApp.Data.TaskDAO Object instance
      */
-    public static DAO getDAOInstance() {
+    public static TaskDAO getDAOInstance() {
         return DAOInstance;
     }
     //endregion
@@ -171,12 +173,12 @@ public class DAO {
     /**
      * Private constructor. Initialize the connection.
      */
-    private DAO(){
-        log = Logger.getLogger(DAO.class.getName());
+    private TaskDAO(){
+        log = Logger.getLogger(TaskDAO.class.getName());
         try {
             InitConnection();
         } catch (Exception exp){
-            log.info("Error on DAO constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.info("Error on TaskDAO constructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         }
 
     }
@@ -192,7 +194,7 @@ public class DAO {
         try {
             destroyConnection();
         } catch (Exception exp){
-            log.info("Error on DAO destructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
+            log.info("Error on TaskDAO destructor\nMessage: " + exp.getMessage() + "\nStacktrace: " + getStringStackTrace(exp).toString());
         }
         super.finalize();
     }

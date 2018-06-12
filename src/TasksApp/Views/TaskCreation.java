@@ -1,4 +1,7 @@
-package tasks;
+package TasksApp.Views;
+
+import TasksApp.Data.Contract.Task;
+import TasksApp.Data.TaskDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +51,7 @@ public class TaskCreation extends HttpServlet
 
         try
         {
-            DAO dao = DAO.getDAOInstance();
+            TaskDAO dao = TaskDAO.getDAOInstance();
 
             Task task = new Task(request.getParameter("taskName"), request.getParameter("taskDescription"), calendar.getTime(), request.getParameter("taskUrgency") != null);
 
@@ -61,7 +64,7 @@ public class TaskCreation extends HttpServlet
             request.setAttribute("success", false);
 
             System.out.println(exp.getMessage());
-            System.out.println(DAO.getStringStackTrace(exp));
+            System.out.println(TaskDAO.getStringStackTrace(exp));
         }
         finally
         {

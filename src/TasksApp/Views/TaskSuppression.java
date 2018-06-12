@@ -1,4 +1,7 @@
-package tasks;
+package TasksApp.Views;
+
+import TasksApp.Data.Contract.Task;
+import TasksApp.Data.TaskDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +34,7 @@ public class TaskSuppression extends HttpServlet
         {
             try
             {
-                DAO dao = DAO.getDAOInstance();
+                TaskDAO dao = TaskDAO.getDAOInstance();
 
                 List<Task> taskList = dao.read(Integer.parseInt(request.getParameter("remove")));
 
@@ -46,7 +49,7 @@ public class TaskSuppression extends HttpServlet
                 request.setAttribute("success", false);
 
                 System.out.println(exp.getMessage());
-                System.out.println(DAO.getStringStackTrace(exp));
+                System.out.println(TaskDAO.getStringStackTrace(exp));
             }
             finally
             {

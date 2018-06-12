@@ -1,4 +1,7 @@
-package tasks;
+package TasksApp.Views;
+
+import TasksApp.Data.Contract.Task;
+import TasksApp.Data.TaskDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +31,7 @@ public class TaskModification extends HttpServlet
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        DAO dao = DAO.getDAOInstance();
+        TaskDAO dao = TaskDAO.getDAOInstance();
 
         List<Task> taskList = dao.read(Integer.parseInt(request.getParameter("task")));
 
@@ -57,7 +60,7 @@ public class TaskModification extends HttpServlet
 
         try
         {
-            DAO dao = DAO.getDAOInstance();
+            TaskDAO dao = TaskDAO.getDAOInstance();
 
             List<Task> taskList = dao.read(Integer.parseInt(request.getParameter("taskID")));
 
@@ -79,7 +82,7 @@ public class TaskModification extends HttpServlet
             request.setAttribute("success", false);
 
             System.out.println(exp.getMessage());
-            System.out.println(DAO.getStringStackTrace(exp));
+            System.out.println(TaskDAO.getStringStackTrace(exp));
         }
         finally
         {

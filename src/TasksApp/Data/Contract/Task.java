@@ -1,4 +1,4 @@
-package tasks;
+package TasksApp.Data.Contract;
 
 import javax.persistence.*;
 import java.util.Date;
