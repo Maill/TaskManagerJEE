@@ -1,6 +1,7 @@
 package TasksApp.Data;
 
 import TasksApp.Data.Contract.Task;
+import TasksApp.Data.Interface.ITaskDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class TaskDAO {
+public class TaskDAO implements ITaskDAO {
 
     //region Connection attributes
     private EntityManagerFactory emf;
